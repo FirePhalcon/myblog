@@ -2,10 +2,12 @@
 
 export class Account {
     id: string;
-    title: string;
     firstName: string;
     lastName: string;
+    username: string;
     email: string;
+    password: string;
     role: Role;
+    hasNewsletter: boolean;
     jwtToken?: string;
 }

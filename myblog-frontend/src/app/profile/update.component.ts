@@ -24,12 +24,13 @@ export class UpdateComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.formBuilder.group({
-            title: [this.account.title, Validators.required],
-            firstName: [this.account.firstName, Validators.required],
-            lastName: [this.account.lastName, Validators.required],
-            email: [this.account.email, [Validators.required, Validators.email]],
-            password: ['', [Validators.minLength(6)]],
-            confirmPassword: ['']
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            username: ['', [Validators.required, Validators.minLength(6)]],
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', Validators.required],
+            acceptTerms: [false, Validators.requiredTrue]
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
