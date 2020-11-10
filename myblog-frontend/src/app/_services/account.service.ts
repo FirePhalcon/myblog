@@ -56,27 +56,43 @@ export class AccountService {
     }
 
     verifyEmail(token: string) {
-        return this.http.post(`${baseUrl}/verify-email`, { token });
+        return this.http.put(`${baseUrl}/confirm-signup/${token}`, {});
     }
     
-    forgotPassword(email: string) {
-        return this.http.post(`${baseUrl}/forgot-password`, { email });
+    forgotPassword(usernameOrEmail: string) {
+        return this.http.put(`${baseUrl}/forgot-password/${usernameOrEmail}`, {});
     }
     
     validateResetToken(token: string) {
         return this.http.post(`${baseUrl}/validate-reset-token`, { token });
     }
     
-    resetPassword(token: string, password: string, confirmPassword: string) {
-        return this.http.post(`${baseUrl}/reset-password`, { token, password, confirmPassword });
+    resetPassword(token: string, password: string) {
+        return this.http.put(`${baseUrl}/change-password`, { token, password});
+    }
+
+    resetPasswordLoggedUser(token: string, password: string) {
+        return this.http.put(`${baseUrl}/change-password-by-logged-user`, { token, password});
+    }
+
+    updateHasNewsletter(token: string, id: number) {
+        return this.http.put(`${baseUrl}/change-newsletter-permission-id/${id}`, {token});
+    }
+
+    updateHasNewsletterLoggedUser(token: string) {
+        return this.http.put(`${baseUrl}/change-newsletter-permission`, {token});
     }
 
     getAll() {
-        return this.http.get<Account[]>(baseUrl);
+        return this.http.get<Account[]>(`${baseUrl}/view-all-users`);
     }
 
     getById(id: string) {
         return this.http.get<Account>(`${baseUrl}/${id}`);
+    }
+
+    getByUsername(username: string) {
+        return this.http.get<Account>(`${baseUrl}/view-user-by-username/${username}`);
     }
     
     create(params) {

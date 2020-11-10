@@ -233,7 +233,7 @@ public class AuthController {
 		}
 		
 		return new ResponseEntity<ApiResponseCustom>(
-				new ApiResponseCustom(Instant.now(), 200, null, "User creation succesfully completed!", request.getRequestURI()),
+				new ApiResponseCustom(Instant.now(), 200, null, "User creation succesfully completed! Please check your email for the verification mail.", request.getRequestURI()),
 				HttpStatus.OK);
 	}
 	
@@ -275,7 +275,7 @@ public class AuthController {
 				HttpStatus.OK);
 	}
 	
-	@PutMapping("/change-password/{identifierCode}/{newPassword}")
+	@PutMapping("/change-password/{identifierCode}/{newPassword}")//TODO -- Change to have a RequestBody instead of a RequestParam
 	@Transactional
 	@ApiOperation(value = "Password modification", response = ResponseEntity.class)
 	@ApiResponses(value = {
@@ -317,7 +317,7 @@ public class AuthController {
 				HttpStatus.OK);
 	}
 	
-	@PutMapping("/change-password-by-logged-user/{newPassword}")
+	@PutMapping("/change-password-by-logged-user/{newPassword}")//TODO -- Change to have a RequestBody instead of a RequestParam
 	@ApiOperation(value = "Password modification : logged user", response = ResponseEntity.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Password has been modified")
